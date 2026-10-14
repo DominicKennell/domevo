@@ -1,10 +1,14 @@
-# One-click deploy on Render (free tier works): New > Blueprint > pick this repo, then paste TMDB_API_KEY when asked.
+# Render Blueprint: runs the DOMEVO server with plain Node (no Docker).
 services:
   - type: web
     name: domevo
-    runtime: docker
+    runtime: node
     plan: free
+    buildCommand: echo "nothing to build"
+    startCommand: node server.js
     healthCheckPath: /healthz
     envVars:
+      - key: NODE_VERSION
+        value: 22
       - key: TMDB_API_KEY
         sync: false
