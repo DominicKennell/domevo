@@ -1,0 +1,10 @@
+# One-click deploy on Render (free tier works): New > Blueprint > pick this repo, then paste TMDB_API_KEY when asked.
+services:
+  - type: web
+    name: domevo
+    runtime: docker
+    plan: free
+    healthCheckPath: /healthz
+    envVars:
+      - key: TMDB_API_KEY
+        sync: false
